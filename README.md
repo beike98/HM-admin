@@ -1,4 +1,4 @@
-# admin
+# MH-admin
 
 ## Project setup
 ```
