@@ -8,11 +8,11 @@
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules">
         <!--用户名-->
         <el-form-item prop="username">
-          <el-input prefix-icon="iconfont icon-ic_uesr_n" placeholder="请输入用户名" v-model="loginForm.username"></el-input>
+          <el-input prefix-icon="el-icon-user" placeholder="请输入用户名" v-model="loginForm.username"></el-input>
         </el-form-item>
         <!--密码-->
         <el-form-item prop="password">
-          <el-input type="password" prefix-icon="iconfont icon-wodemima" placeholder="请输入密码"
+          <el-input type="password" prefix-icon="el-icon-lock" placeholder="请输入密码"
                     v-model="loginForm.password"></el-input>
         </el-form-item>
         <!--登陆按钮-->
