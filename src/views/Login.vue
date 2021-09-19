@@ -25,6 +25,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Login',
   data () {
@@ -75,6 +76,7 @@ export default {
         const { data: res } = await this.$http.post('login', this.loginForm)
         if (res.meta.status === 200) {
           this.$message.success('登陆成功！')
+          window.sessionStorage.setItem('id', res.data.id)
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/home')
         } else {

@@ -8,8 +8,8 @@
       text-color="#9da8ba"
       active-text-color="#ffd04b"
       :collapse="isCollapse"
-      :unique-opened="true"
-    >
+      unique-opened
+      router>
       <!--一级菜单-->
       <el-submenu :index="item.id.toString()" v-for="item in menuList" :key="item.id">
         <template slot="title">
@@ -29,7 +29,7 @@
       <!--头部-->
       <el-header class="home-header">
         <el-button type="primary" size="mini" icon="el-icon-s-fold" class="home-collapse-btn" @click="onCollapse"/>
-        <span class="home-title">欢迎来到沐海后台。当前用户：admin｜超级管理员</span>
+        <span class="home-title">当前用户：{{ idInfo.username }}</span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <el-button type="text" @click="logout" class="home-logout">
           <i class="el-icon-refresh-left"></i>
@@ -48,6 +48,8 @@ export default {
   name: 'Home',
   data () {
     return {
+      id: '',
+      idInfo: '',
       menuList: [],
       isCollapse: false,
       iconsObj: {
@@ -61,6 +63,8 @@ export default {
   },
   mounted () {
     this.getMenuList()
+    this.id = window.sessionStorage.getItem('id')
+    this.getIdInfo()
   },
   methods: {
     logout () {
@@ -77,6 +81,10 @@ export default {
       } else {
         this.menuList = res.data
       }
+    },
+    async getIdInfo () {
+      const { data: res } = await this.$http.get('users/' + this.id)
+      this.idInfo = res.data
     }
   }
 }
@@ -92,14 +100,14 @@ export default {
 }
 
 .home-menu:not(.el-menu--collapse) {
-  width: 300px;
+  width: 260px;
 }
 
 .home-header {
   line-height: 60px;
   display: flex;
   justify-content: flex-end;
-  font-size: 15px;
+  font-size: 14px;
   position: relative;
   box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
 }
@@ -115,7 +123,7 @@ export default {
   transform: translateY(-50%);
 }
 
-.home-title,.home-logout {
+.home-title, .home-logout {
   color: #888888;
 }
 </style>
