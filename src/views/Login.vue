@@ -47,7 +47,7 @@ export default {
           {
             min: 3,
             max: 10,
-            message: '长度应为3到15个字符',
+            message: '长度应为3到10个字符',
             trigger: 'blur'
           }
         ],
